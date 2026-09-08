@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Aakriti, You Forgot Someone 💌</title>
+<style>
+  *{box-sizing:border-box}
+  html{min-height:100%;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{
+    margin:0; min-height:100vh; font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    background:radial-gradient(circle at 20% 10%,#ffd9e8 0,transparent 30%),
+               radial-gradient(circle at 85% 80%,#d8d5ff 0,transparent 30%),
+               #fff8fb;
+    color:#241b25; overflow-x:hidden;
+  }
+  .hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+  .heart{position:absolute;font-size:20px;animation:float 8s linear infinite;opacity:.45}
+  @keyframes float{from{transform:translateY(110vh) rotate(0)}to{transform:translateY(-15vh) rotate(360deg)}}
+  .wrap{position:relative;z-index:1;max-width:900px;margin:auto;padding:34px 18px 70px}
+  .hero{text-align:center;padding:34px 20px 24px}
+  .badge{display:inline-block;background:#fff;border:1px solid #f1d6e3;padding:8px 14px;border-radius:999px;font-size:13px;box-shadow:0 6px 20px #d9b6c633}
+  h1{font-size:clamp(42px,8vw,78px);line-height:.95;margin:20px 0 12px;letter-spacing:-4px}
+  .pink{color:#e33f76}
+  .subtitle{font-size:18px;max-width:620px;margin:0 auto;color:#665766;line-height:1.6}
+  .card{
+    background:#ffffffd9;backdrop-filter:blur(14px);border:1px solid #fff;
+    border-radius:28px;padding:24px;box-shadow:0 18px 60px #6c31501c;margin-top:22px;
+  }
+  .notice{text-align:center}
+  .notice .big{font-size:58px}
+  .notice h2{margin:5px 0 8px;font-size:28px}
+  .notice p{color:#695d68}
+  .buttons{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:20px}
+  button{
+    border:0; -webkit-appearance:none; appearance:none; -webkit-tap-highlight-color:transparent;
+border-radius:20px;padding:18px 16px;background:#fff5f8;color:#3a2631;
+    font-weight:750;font-size:15px;cursor:pointer;transition:.2s;box-shadow:inset 0 0 0 1px #f3dce5;
+  }
+  button:hover{transform:translateY(-3px) rotate(-.4deg);box-shadow:0 12px 24px #7a30431b}
+  button span{display:block;font-size:24px;margin-bottom:7px}
+  .special{background:#2c2029;color:white}
+  .special:hover{box-shadow:0 14px 30px #2c202955}
+  .counter{display:flex;justify-content:center;gap:8px;align-items:center;margin-top:22px;font-size:13px;color:#776975}
+  .dot{width:8px;height:8px;border-radius:50%;background:#e33f76;display:inline-block}
+  .modal{position:fixed;inset:0;background:#1f1320aa;display:none;align-items:center;justify-content:center;padding:20px;z-index:10}
+  .modal.show{display:flex}
+  .modalbox{width:min(560px,100%);background:#fff;border-radius:30px;padding:30px;position:relative;box-shadow:0 30px 100px #0004;animation:pop .22s ease}
+  @keyframes pop{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+  .close{position:absolute;right:15px;top:13px;background:#f7eef2;border-radius:50%;padding:8px 11px}
+  .modalbox h3{font-size:30px;margin:8px 0 10px}
+  .modalbox p{font-size:17px;line-height:1.7;color:#5f5260}
+  .signature{font-weight:800;color:#e33f76;font-size:20px}
+  .meter{height:12px;background:#f3e5eb;border-radius:99px;overflow:hidden;margin:16px 0}
+  .meter i{display:block;height:100%;width:92%;background:linear-gradient(90deg,#ff7ba7,#d93e70);border-radius:99px}
+  .footer{text-align:center;color:#887b86;margin-top:25px;font-size:13px}
+  .tiny{font-size:12px;color:#998d96}
+  @media(max-width:600px){
+    .wrap{padding:18px 12px 42px}
+    .hero{padding:24px 8px 16px}
+    .badge{font-size:11px;padding:7px 10px}
+    h1{font-size:clamp(42px,14vw,64px);letter-spacing:-2px;margin:16px 0 10px}
+    .subtitle{font-size:16px;line-height:1.5}
+    .card{padding:18px;border-radius:22px;margin-top:16px}
+    .notice .big{font-size:48px}
+    .notice h2{font-size:24px}
+    .buttons{grid-template-columns:1fr;gap:10px}
+    button{min-height:62px;padding:15px 14px;font-size:15px}
+    button span{font-size:22px;margin-bottom:4px}
+    .modal{padding:12px;align-items:flex-end}
+    .modalbox{width:100%;max-height:88vh;overflow:auto;border-radius:26px 26px 18px 18px;padding:24px 20px calc(24px + env(safe-area-inset-bottom))}
+    .modalbox h3{font-size:26px;padding-right:28px}
+    .modalbox p{font-size:16px;line-height:1.6}
+    .close{right:12px;top:10px;min-height:40px;min-width:40px;padding:8px}
+    .footer{font-size:12px;line-height:1.5;padding:0 12px}
+  }
+  @media (hover:none){
+    button:hover{transform:none;box-shadow:inset 0 0 0 1px #f3dce5}
+    button:active{transform:scale(.98)}
+  }
+</style>
+</head>
+<body>
+<div class="hearts" id="hearts"></div>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="badge">🚨 IMPORTANT RELATIONSHIP ANNOUNCEMENT 🚨</div>
+    <h1>Aakriti,<br><span class="pink">we need to talk.</span></h1>
+    <p class="subtitle">There appears to be a serious technical issue with your phone: it has somehow forgotten to call or text <b>Aman</b> today.</p>
+  </section>
+
+  <section class="card notice">
+    <div class="big">🧍🏻‍♂️</div>
+    <h2>Aman is currently waiting.</h2>
+    <p>He has been left wondering whether he is your boyfriend, your ex, or just a very dedicated notification.</p>
+    <div class="counter"><span class="dot"></span> Boyfriend status: <b>ACTIVE</b></div>
+  </section>
+
+  <section class="card">
+    <div class="buttons">
+      <button onclick="openModal('evidence')"><span>🕵🏻</span>Show the evidence</button>
+      <button onclick="openModal('miss')"><span>🥺</span>How much do I miss you?</button>
+      <button onclick="openModal('memory')"><span>🧠</span>Remember Aman</button>
+      <button onclick="openModal('court')"><span>⚖️</span>Relationship court</button>
+      <button onclick="openModal('complaint')"><span>📋</span>File a complaint</button>
+      <button class="special" onclick="openModal('emergency')"><span>🚨</span>Emergency boyfriend button</button>
+    </div>
+  </section>
+
+  <section class="card" style="text-align:center">
+    <div style="font-size:42px">📱💬❤️</div>
+    <h2>Recommended next action</h2>
+    <p style="color:#695d68;line-height:1.6">Pick up your phone. Open the chat. Type something ridiculously cute. Press send.</p>
+    <button onclick="callMe()" style="background:#e33f76;color:white;min-width:210px">💗 Text Aman</button>
+    <div class="tiny" style="margin-top:12px">No pressure. Just… considerable pressure.</div>
+  </section>
+
+  <div class="footer">Made with love, unnecessary drama & approximately 47% patience — Aman</div>
+</div>
+
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modalbox">
+    <button class="close" onclick="closeModal()">✕</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<script>
+const content={
+ evidence:{
+  icon:"🕵🏻‍♂️",title:"The evidence is overwhelming.",
+  body:`<p><b>Exhibit A:</b> Today happened.</p>
+        <p><b>Exhibit B:</b> Aakriti exists.</p>
+        <p><b>Exhibit C:</b> Aman is still her boyfriend.</p>
+        <p><b>Exhibit D:</b> There has been an unacceptable shortage of “hey ❤️” messages.</p>
+        <p class="signature">Verdict: suspicious. Very suspicious.</p>`
+ },
+ miss:{
+  icon:"🥺",title:"A scientifically accurate report",
+  body:`<p>Current level of missing Aakriti:</p>
+        <div class="meter"><i></i></div>
+        <p><b>92%</b> and rising.</p>
+        <p>The remaining 8% is being reserved for the moment your name pops up on my phone.</p>`
+ },
+ memory:{
+  icon:"🧠",title:"Please refresh your memory.",
+  body:`<p>You have a boyfriend named <b>Aman</b>.</p>
+        <p>He likes you. He thinks you're cute. He is slightly dramatic. He also made an entire website because apparently a normal “hello???” wasn't enough.</p>
+        <p class="signature">Hope that helps. ❤️</p>`
+ },
+ court:{
+  icon:"⚖️",title:"The People vs. Aakriti",
+  body:`<p><b>Charge:</b> Forgetting to text/call boyfriend.</p>
+        <p><b>Prosecution:</b> Aman, deeply offended but still in love.</p>
+        <p><b>Defense:</b> “I forgot.”</p>
+        <p><b>Sentence:</b> One cute message + one call + unlimited affection.</p>
+        <p class="signature">Court adjourned. Go text him.</p>`
+ },
+ complaint:{
+  icon:"📋",title:"Complaint successfully filed.",
+  body:`<p><b>Complaint ID:</b> AAK-LOVE-001</p>
+        <p><b>Issue:</b> Boyfriend has not received sufficient attention today.</p>
+        <p><b>Severity:</b> 😭 Extremely dramatic</p>
+        <p><b>Resolution:</b> Contact Aman immediately.</p>`
+ },
+ emergency:{
+  icon:"🚨",title:"BOYFRIEND EMERGENCY",
+  body:`<p>This is not a drill.</p>
+        <p>Aman requires immediate administration of:</p>
+        <p style="font-size:25px">💬 a text<br>📞 a call<br>❤️ some love<br>🥹 possibly an “I miss you”</p>
+        <p class="signature">Please act responsibly, Aakriti.</p>`
+ },
+ text:{
+  icon:"📲",title:"Official notification",
+  body:`<p>The message has been prepared:</p>
+        <p style="font-size:20px;background:#fff5f8;padding:18px;border-radius:18px">“Okay fine, I remembered you exist. ❤️”</p>
+        <p class="tiny">Now press your actual chat app and send Aman something cuter.</p>`
+ }
+};
+
+function openModal(key){
+ const x=content[key];
+ document.getElementById('modalContent').innerHTML=`<div style="font-size:46px">${x.icon}</div><h3>${x.title}</h3>${x.body}`;
+ document.getElementById('modal').classList.add('show');
+}
+function closeModal(){document.getElementById('modal').classList.remove('show')}
+function callMe(){
+ openModal('text');
+}
+for(let i=0;i<22;i++){
+ const h=document.createElement('div');h.className='heart';h.textContent=['♥','♡','💗','✨'][i%4];
+ h.style.left=Math.random()*100+'%';h.style.animationDelay=(-Math.random()*8)+'s';h.style.animationDuration=(6+Math.random()*7)+'s';
+ document.getElementById('hearts').appendChild(h);
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+</script>
+</body>
+</html>
